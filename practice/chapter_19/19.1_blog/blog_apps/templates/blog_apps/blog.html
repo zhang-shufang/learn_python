@@ -1,0 +1,28 @@
+{% extends 'blog_apps/base.html' %}
+
+{% block content %}
+
+    <p>{{ blog.name }}</p>
+    <p>
+        <a href="{% url 'blog_apps:new_article' blog.id %}">Add a new article</a>
+    </p>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <p>{{ article.topic }} - {{ article.owner }} </p>
+
+                <p>{{ article.text|linebreaks }}</p>
+
+                <p>{{ article.date_added|date:'M d, Y H:i'}}</p>
+                
+                <a href="{% url 'blog_apps:edit_article' article.id %}">Edit</a>
+                <!-- {% if request.user == blog.owner %} -->
+                
+                <!-- {% endif %} -->
+            </li>
+        {% empty %}
+            <li>There are no articles for this blog.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

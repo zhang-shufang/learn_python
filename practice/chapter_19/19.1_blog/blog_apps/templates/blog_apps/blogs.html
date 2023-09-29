@@ -1,0 +1,19 @@
+{% extends 'blog_apps/base.html' %}
+
+{% block content %}
+    <p>
+        NY blog is a place which new youngs to communicate with each other.
+    </p>
+    <P>All blogs:</P>
+    
+    <ul>
+        {% for blog in blogs %}
+            <li>
+                <a href="{% url 'blog_apps:blog' blog.id %}">{{ blog.name }}</a>
+            </li>
+        {% empty %}
+            <li>There are no blogs yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'blog_apps:new_blog' %}">Add a new blog</a>
+{% endblock content %}
